@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="48"
+     height="48"
+     viewBox="0 0 48 48"
+     fill="none"
+     stroke="#8F7F7A"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- Štapić -->
+    <path d="M11 37L28 20" />
+    <path d="M8 40L11 37" stroke-width="3" />
+
+    <!-- Velika sparkle zvezda -->
+    <path d="M33 8V13" />
+    <path d="M33 15V20" />
+    <path d="M27 14H32" />
+    <path d="M34 14H39" />
+
+    <path d="M29.5 10.5L31.5 12.5" />
+    <path d="M34.5 15.5L36.5 17.5" />
+    <path d="M36.5 10.5L34.5 12.5" />
+    <path d="M31.5 15.5L29.5 17.5" />
+
+    <!-- Mala sparkle -->
+    <path d="M22 10V12.5" />
+    <path d="M22 13.5V16" />
+    <path d="M19.5 13H22" />
+    <path d="M22 13H24.5" />
+
+    <!-- Mala sparkle -->
+    <path d="M38 22V24.5" />
+    <path d="M38 25.5V28" />
+    <path d="M35.5 25H38" />
+    <path d="M38 25H40.5" />
+
+</svg>

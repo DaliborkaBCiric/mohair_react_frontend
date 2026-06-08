@@ -54,7 +54,7 @@ export default function HomePage() {
         <div className="container hero-content">
           <div className="hero-text">
             <div className='eyebrowDiv'>
-              <span className="eyebrow">RUČNO RAĐENO <img src={heartIcon} /></span>
+              <span className="eyebrow">RUČNO RAĐENO <img src={heartIcon} alt="Icon-heart" /></span>
             </div>
             <h1>
               Sa ljubavlju.
@@ -69,33 +69,34 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+
+        <div className="benefits">
+          <div className="benefit-item">
+            <img src={HeartIcon} alt="" />
+            <b>RUČNI RAD</b>
+            <span>Sa ljubavlju</span>
+          </div>
+
+          <div className="benefit-item">
+            <img src={Leaf} alt="leaf" />
+            <b>PRIRODNI MATERIJALI</b>
+            <span>Pamuk & vuna</span>
+          </div>
+
+          <div className="benefit-item">
+            <img src={GiftIcon} alt="" />
+            <b>POKLON PAKOVANJE</b>
+            <span>Spremno za darivanje</span>
+          </div>
+
+          <div className="benefit-item">
+            <img src={TruckIcon} alt="" />
+            <b>BESPLATNA DOSTAVA</b>
+            <span>Za porudžbine preko 60€</span>
+          </div>
+        </div>
       </section>
 
-      <section className="benefits container">
-        <div className="benefit-item">
-          <img src={HeartIcon} alt="" />
-          <b>RUČNI RAD</b>
-          <span>Sa ljubavlju</span>
-        </div>
-
-        <div className="benefit-item">
-          <img src={Leaf} alt="" />
-          <b>PRIRODNI MATERIJALI</b>
-          <span>Pamuk & vuna</span>
-        </div>
-
-        <div className="benefit-item">
-          <img src={GiftIcon} alt="" />
-          <b>POKLON PAKOVANJE</b>
-          <span>Spremno za darivanje</span>
-        </div>
-
-        <div className="benefit-item">
-          <img src={TruckIcon} alt="" />
-          <b>BESPLATNA DOSTAVA</b>
-          <span>Za porudžbine preko 60€</span>
-        </div>
-      </section>
       <section className="section container">
         <div className="section-title">
           <h2>Kategorije</h2>
