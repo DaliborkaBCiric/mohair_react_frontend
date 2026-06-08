@@ -700,30 +700,6 @@ h2 {
   object-fit: cover;
 }
 
-.product-card img {
-  height: 245px;
-}
-
-.product-info {
-  padding: 18px;
-}
-
-.product-info h3 {
-  margin: 0 0 6px;
-  font-size: 20px;
-}
-
-.product-info p {
-  color: var(--muted);
-  margin: 0 0 12px;
-}
-
-.product-info strong {
-  display: block;
-  margin-bottom: 12px;
-  font-size: 19px;
-}
-
 .heart {
   position: absolute;
   top: 12px;
@@ -778,7 +754,7 @@ h2 {
 }
 
 .page {
-  padding: 60px 0;
+  padding: 30px 0;
 }
 
 .page-title {
