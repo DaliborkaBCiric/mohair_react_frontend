@@ -323,8 +323,24 @@
 }
 
 .top-filter {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+}
+
+
+.cart-message {
+	position: fixed;
+	top: 100px;
+	right: 20px;
+
+	padding: 12px 18px;
+	border-radius: 10px;
+
+	background: #6a5d5d;
+	color: white;
+
+	box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+
+	z-index: 9999;
 }
 
 .shop-toolbar {
@@ -355,6 +371,12 @@
 
 /* Responsive */
 @media (max-width: 1050px) {
+
+	.top-filter {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.btn-soft {
 		display: inline-flex !important;
 	}
