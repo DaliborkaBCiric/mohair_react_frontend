@@ -6,14 +6,16 @@ import {
   Search,
   Truck,
   Gift,
-  RotateCcw,
+  RefreshCcw,
   Leaf,
   Palette,
   CheckCircle,
   HandHeart,
+  RulerDimensionLine
 } from 'lucide-react'
 import { api } from '../services/api'
 import "../styles/product.css"
+import yarnHart from '../assets/yarn-heart.png'
 
 export default function ProductPage() {
   const { slug } = useParams()
@@ -23,6 +25,35 @@ export default function ProductPage() {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
   const [categories, setCategories] = useState([])
+  const [activeTab, setActiveTab] = useState('opis')
+
+  const tabs = [
+    {
+      id: 'opis',
+      label: 'Opis',
+      content:
+        product?.description ||
+        'Opis proizvoda trenutno nije dostupan.',
+    },
+    {
+      id: 'info',
+      label: 'Dodatne informacije',
+      content: <><p>
+        {product?.additional_info ||
+          'Materijal: moher i prirodna vuna. Svaki proizvod je ručno izrađen, pa su moguća blaga odstupanja.'} ,
+      </p>
+      </>
+    },
+    {
+      id: 'care',
+      label: 'Održavanje',
+      content:
+        product?.care_instructions ||
+        'Preporučuje se ručno pranje u hladnoj vodi i sušenje na ravnoj površini.',
+    },
+  ]
+
+  const activeContent = tabs.find((tab) => tab.id === activeTab)
 
   useEffect(() => {
     async function loadProduct() {
@@ -157,6 +188,13 @@ export default function ProductPage() {
                 </div>
                 <strong>{product.color || '—'}</strong>
               </div>
+              <div className="product-spec">
+                <div className="spec-label">
+                  <RulerDimensionLine size={19} />
+                  <span>Veličina:</span>
+                </div>
+                <strong>{product.age_group || '—'}</strong>
+              </div>
 
               <div className="product-spec">
                 <div className="spec-label">
@@ -202,34 +240,66 @@ export default function ProductPage() {
               </button>
             </div>
 
-            <div className="product-benefits">
-              <div className="benefit-item">
-                <div className="benefit-icon">
-                  <Truck size={23} />
+            <section className="info-strip">
+              <div className="info-item">
+                <div className="info-icon">
+                  <Truck size={26} strokeWidth={1.8} />
                 </div>
-                <p>
-                  <strong>Besplatna dostava</strong>
-                  <span>preko 60€</span>
-                </p>
+                <div>
+                  <h4>Besplatna dostava</h4>
+                  <p>preko 60€</p>
+                </div>
               </div>
 
-              <div className="benefit-item">
-                <div className="benefit-icon">
-                  <Gift size={23} />
+              <div className="info-item">
+                <div className="info-icon">
+                  <Gift size={26} strokeWidth={1.8} />
                 </div>
-                <p>
-                  <strong>Pažljivo pakovanje</strong>
-                  <span>svakog proizvoda</span>
-                </p>
+                <div>
+                  <h4>Pažljivo pakovanje</h4>
+                  <p>svakog proizvoda</p>
+                </div>
               </div>
 
-              <div className="benefit-item">
-                <div className="benefit-icon">
-                  <RotateCcw size={23} />
+              <div className="info-item">
+                <div className="info-icon">
+                  <RefreshCcw size={26} strokeWidth={1.8} />
                 </div>
+                <div>
+                  <h4>Mogućnost zamene</h4>
+                  <p>u roku od 14 dana</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+        <section className="product-info-panel">
+          <div className="product-tabs">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                className={activeTab === tab.id ? 'active' : ''}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="product-info-content">
+            <p>{activeContent.content}</p>
+
+            <div className="handmade-note">
+              <div className="handmade-icon">
+                <img src={yarnHart} alt="" />
+              </div>
+
+              <div>
+                <h4>Ručni rad sa ljubavlju</h4>
                 <p>
-                  <strong>Mogućnost zamene</strong>
-                  <span>u roku od 14 dana</span>
+                  Svaki komad je pažljivo i s ljubavlju napravljen u našem ateljeu.
+                  Hvala što podržavate ručni rad. ♡
                 </p>
               </div>
             </div>
