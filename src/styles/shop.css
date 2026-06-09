@@ -1,6 +1,6 @@
 .shop-header {
 	width: 100%;
-	padding: 48px 70px 34px;
+	padding: 70px 70px 34px;
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
@@ -228,7 +228,7 @@
 .product-images {
 	position: relative;
 	height: 260px;
-	display: flex;
+	/* display: flex; */
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
 	background: #f7eee9;

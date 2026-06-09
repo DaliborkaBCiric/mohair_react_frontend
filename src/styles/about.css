@@ -21,7 +21,7 @@ body {
 .about-section {
     position: relative;
     min-height: 100vh;
-    padding: 36px 7% 44px;
+    padding: 70px 7% 44px;
     background: linear-gradient(90deg, #fffdfc 0%, #fff8f7 48%, #fff1ef 100%);
     overflow: hidden;
 }
