@@ -1,6 +1,5 @@
 import { useMemo, useState, useEffect } from 'react'
 import { api } from '../services/api'
-import { products } from '../data/mockData.js'
 import "../styles/shop.css";
 import ProductGrid from '../components/product/ProductGrid.jsx'
 import allIcon from '../assets/all_categories.png'

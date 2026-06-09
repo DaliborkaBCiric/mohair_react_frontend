@@ -47,5 +47,3 @@ src/
   services/        API komunikacija
   styles/          globalni CSS
 ```
-
-Trenutno stranice koriste mock podatke iz `src/data/mockData.js`. Kada backend rute budu spremne, povezivanje ide preko `src/services/api.js`.

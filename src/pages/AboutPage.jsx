@@ -43,7 +43,7 @@ export default function About() {
           </p>
 
           <a href="/prodavnica" className="about-btn">
-            <button class="btn" fdprocessedid="b0tf9">SAZNAJ VIŠE</button>
+            <button className="btn" fdprocessedid="b0tf9">SAZNAJ VIŠE</button>
           </a>
         </div>
 
