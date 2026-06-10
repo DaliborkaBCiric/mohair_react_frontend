@@ -1,4 +1,5 @@
 import { SITE } from '../confg/config.js'
+import { Link } from 'react-router-dom'
 import { PhoneCall, Mail, MapPin, Gift, HeartHandshake } from 'lucide-react'
 import {
   FaInstagram,
@@ -7,6 +8,7 @@ import {
 } from 'react-icons/fa'
 import contactToys from '../assets/contact-toys.png'
 import '../styles/contact.css'
+import CollaborationBanner from '../components/banners/CollaborationBanner.jsx'
 
 export default function ContactPage() {
   return (
@@ -50,7 +52,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
+      <CollaborationBanner />
       <section className="contact-bottom container">
         <div className="faq-card">
           <h2>Najčešća pitanja</h2>

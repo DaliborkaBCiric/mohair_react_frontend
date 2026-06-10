@@ -1,9 +1,11 @@
 import { useMemo, useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../services/api'
 import "../styles/shop.css";
 import ProductGrid from '../components/product/ProductGrid.jsx'
 import allIcon from '../assets/all_categories.png'
 import { SlidersHorizontal } from "lucide-react"
+import CollaborationBanner from '../components/banners/CollaborationBanner.jsx';
 
 export default function ShopPage() {
 
@@ -254,6 +256,7 @@ export default function ShopPage() {
                 </label>
               ))}
             </section>
+            <CollaborationBanner />
           </aside>
           <ProductGrid products={filtered} />
         </div>
