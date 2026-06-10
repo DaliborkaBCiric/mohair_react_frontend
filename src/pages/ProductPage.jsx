@@ -21,6 +21,18 @@ import yarnHart from '../assets/yarn-heart.png'
 export default function ProductPage() {
   const { slug } = useParams()
   const { addToCart } = useCart()
+  const [showMessage, setShowMessage] = useState(false)
+
+  function handleAddToCart() {
+    addToCart(product, quantity)
+
+    setShowMessage(true)
+
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 3000)
+  }
+
   const { products, categories, loading } = useAppData()
 
   const [selectedImage, setSelectedImage] = useState(null)
@@ -220,7 +232,7 @@ export default function ProductPage() {
               <button
                 className="add-to-cart-btn"
                 type="button"
-                onClick={() => addToCart(product, quantity)}
+                onClick={handleAddToCart}
                 disabled={product.stock_quantity <= 0}
               >
                 <ShoppingBag size={19} />
@@ -294,6 +306,11 @@ export default function ProductPage() {
             </div>
           </div>
         </section>
+        {showMessage && (
+          <div className="cart-message">
+            Proizvod je dodat u korpu
+          </div>
+        )}
       </main>
     </>
   )

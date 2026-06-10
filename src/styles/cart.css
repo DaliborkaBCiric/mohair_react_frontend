@@ -1,7 +1,7 @@
 .cart-page,
 .checkout-page {
 	background: #fffaf7;
-	padding: 70px 0;
+	padding: 10px 0;
 	color: #6a5d5d;
 }
 
@@ -291,7 +291,7 @@
 
 	.cart-page,
 	.checkout-page {
-		padding: 45px 0;
+		padding: 10px 0;
 	}
 
 	.cart-hero {

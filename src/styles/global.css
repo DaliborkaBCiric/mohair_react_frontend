@@ -965,6 +965,10 @@ h2 {
 }
 
 @media (max-width: 1100px) {
+  .nav-icons {
+    display: flex;
+  }
+
   .header-inner {
     padding-left: 160px;
   }

@@ -44,10 +44,10 @@ export default function CartPage() {
         <div className="cart-items">
           {items.map((item) => (
             <article className="cart-item" key={item.id}>
-              <img src={item.image} alt={item.name} />
+              <Link to={`/proizvod/${item.slug}`}><img src={item.image} alt={item.name} /></Link>
 
               <div className="cart-item-info">
-                <h3>{item.name}</h3>
+                <Link to={`/proizvod/${item.slug}`}><h3>{item.name}</h3></Link>
                 <p>{item.material || 'Ručno rađeno sa ljubavlju'}</p>
 
                 <div className="cart-mobile-price">

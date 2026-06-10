@@ -2,7 +2,7 @@ export const SITE = {
   phone: '+381628122818',
   phoneDisplay: '062 81 22 818',
 
-  email: 'kontakt@mohairstudio.rs',
+  email: 'kontakt@mohair-studio.rs',
 
   address: 'Beograd, Srbija',
 
