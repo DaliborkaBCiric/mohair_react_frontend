@@ -1,5 +1,0 @@
-export const posts = [
-  { id: 1, title: 'Kako odabrati pravi ručni poklon za bebu?', category: 'Saveti', date: '20. maj 2024.', image: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=900&q=80', excerpt: 'Ideje za nežne, korisne i personalizovane poklone.' },
-  { id: 2, title: 'Zašto su amigurumi igračke posebne?', category: 'Inspiracija', date: '12. maj 2024.', image: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=900&q=80', excerpt: 'Toplina ručnog rada u malim igračkama.' },
-  { id: 3, title: 'Održavanje vunenih čarapa', category: 'Uputstva', date: '5. maj 2024.', image: 'https://images.unsplash.com/photo-1602810316693-3667c854239a?auto=format&fit=crop&w=900&q=80', excerpt: 'Kako da proizvodi traju dugo i ostanu mekani.' }
-]

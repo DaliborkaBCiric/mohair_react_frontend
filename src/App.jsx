@@ -7,7 +7,7 @@ import AboutPage from './pages/AboutPage.jsx'
 import BlogPage from './pages/BlogPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import CartPage from './pages/CartPage.jsx'
-// import BlogContentPage from './pages/BlogContentPage.jsx'
+import BlogPostPage from './pages/BlogPostPage.jsx'
 
 export default function App() {
   return (
@@ -18,7 +18,7 @@ export default function App() {
         <Route path="/proizvod/:slug" element={<ProductPage />} />
         <Route path="/o-nama" element={<AboutPage />} />
         <Route path="/blog" element={<BlogPage />} />
-        {/* <Route path="/blog/:slug" element={<BlogContentPage />} /> */}
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/korpa" element={<CartPage />} />
       </Routes>

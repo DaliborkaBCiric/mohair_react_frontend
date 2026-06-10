@@ -1,5 +1,6 @@
 import { useMemo, useState, useEffect } from 'react'
 import { api } from '../services/api'
+import { formatDate } from '../utils/common'
 import '../styles/blog.css'
 
 export default function Blog() {
@@ -35,14 +36,6 @@ export default function Blog() {
     loadBlogCategories()
     loadPosts()
   }, [])
-
-  function formatDate(dateString) {
-    return new Date(dateString).toLocaleDateString('sr-RS', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
-  }
 
   const filtered = useMemo(() => {
     return posts.filter((p) => category === 0 || p.category_id === category)
