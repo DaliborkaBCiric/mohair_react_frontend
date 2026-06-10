@@ -1,5 +1,7 @@
 import { SITE } from '../confg/config.js'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { api } from '../services/api'
 import { PhoneCall, Mail, MapPin, Gift, HeartHandshake } from 'lucide-react'
 import {
   FaInstagram,
@@ -10,6 +12,49 @@ import '../styles/contact.css'
 import CollaborationBanner from '../components/banners/CollaborationBanner.jsx'
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState('')
+  const [error, setError] = useState('')
+
+  function handleChange(e) {
+    const { name, value } = e.target
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    try {
+      setLoading(true)
+      setSuccess('')
+      setError('')
+
+      await api.sendContact(formData)
+
+      setSuccess('Poruka je uspešno poslata. Odgovorićemo vam u najkraćem roku. ♡')
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+      })
+    } catch (err) {
+      setError('Došlo je do greške prilikom slanja poruke. Pokušajte ponovo.')
+    } finally {
+      setLoading(false)
+    }
+  }
   return (
     <main className="contact-page">
       <section className="contact-top container">
@@ -36,12 +81,45 @@ export default function ContactPage() {
 
         <div className="contact-right">
           <div className="form-side">
-            <form>
-              <input placeholder="Vaše ime" />
-              <input placeholder="Vaš email" />
-              <input placeholder="Telefon (opciono)" />
-              <textarea placeholder="Poruka"></textarea>
-              <button>POŠALJI PORUKU</button>
+            <form onSubmit={handleSubmit}>
+              <input
+                name="name"
+                placeholder="Vaše ime"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                name="email"
+                type="email"
+                placeholder="Vaš email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                name="phone"
+                placeholder="Telefon (opciono)"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+
+              <textarea
+                name="message"
+                placeholder="Poruka"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+
+              <button type="submit" disabled={loading}>
+                {loading ? 'SLANJE...' : 'POŠALJI PORUKU'}
+              </button>
+
+              {success && <p className="contact-success">{success}</p>}
+              {error && <p className="contact-error">{error}</p>}
             </form>
           </div>
 

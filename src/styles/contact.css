@@ -56,6 +56,25 @@
   line-height: 1.45;
 }
 
+.contact-success {
+  margin: 6px 0 0;
+  color: #497a4f;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.contact-error {
+  margin: 6px 0 0;
+  color: #b94a48;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.form-side button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 .socials {
   display: flex;
   gap: 26px;
@@ -76,7 +95,7 @@
 }
 
 .contact-right {
-  height: 356px;
+  height: 416px;
   display: grid;
   grid-template-columns: 48% 52%;
   border-radius: 6px;
