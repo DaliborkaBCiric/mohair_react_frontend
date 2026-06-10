@@ -9,6 +9,7 @@ import HeartIcon from "../assets/icon_heart.png";
 import GiftIcon from "../assets/icon_gift.png";
 import Leaf from "../assets/icon_leaf.png";
 import TruckIcon from "../assets/icon_truck.png";
+import CollaborationBanner from '../components/banners/CollaborationBanner.jsx'
 
 export default function HomePage() {
 
@@ -123,6 +124,7 @@ export default function HomePage() {
           )}
         </div>
       </section>
+      <CollaborationBanner />
       <section className="section container">
         <div className="section-header">
           <div className="section-title">
