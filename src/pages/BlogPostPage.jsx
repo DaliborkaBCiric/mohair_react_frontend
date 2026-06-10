@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { api } from '../services/api'
+import { useAppData } from '../context/AppDataContext'
 import { formatDate } from '../utils/common'
 import '../styles/blog-post.css'
 import instagram from '../assets/svg_icons/instagram.svg'
@@ -9,42 +10,51 @@ import CollaborationBanner from '../components/banners/CollaborationBanner.jsx'
 
 export default function BlogPost() {
 	const { slug } = useParams()
+
+	const {
+		blogCategories,
+		latestPosts,
+		loading
+	} = useAppData()
+
 	const [post, setPost] = useState(null)
-	const [categories, setCategories] = useState([])
-	const [latestPosts, setLatestPosts] = useState([])
+	const [loadingPost, setLoadingPost] = useState(true)
 
 	useEffect(() => {
 		if (!slug) return
 
-		async function loadData() {
+		async function loadPost() {
 			try {
-				const latestPostsData = await api.getLatestBlogPosts()
-				const [postData, categoriesData] = await Promise.all([
-					api.getBlogPost(slug),
-					api.getBlogCategories(),
-					api.getLatestBlogPosts(),
-				])
+				setLoadingPost(true)
+
+				const postData = await api.getBlogPost(slug)
 
 				setPost(postData)
-				setCategories(categoriesData)
-				setLatestPosts(latestPostsData.filter((p) => p.slug !== slug))
-
 			} catch (error) {
 				console.error(error)
+			} finally {
+				setLoadingPost(false)
 			}
 		}
 
-		loadData()
+		loadPost()
 	}, [slug])
-	if (!post) {
+
+	const filteredLatestPosts = useMemo(() => {
+		return latestPosts.filter((p) => p.slug !== slug)
+	}, [latestPosts, slug])
+
+	if (loading || loadingPost) {
 		return <p>Učitavanje...</p>
 	}
 
+	if (!post) {
+		return <p>Post nije pronađen.</p>
+	}
 
 	return (
 		<main className="blog-post-page">
 			<div className="blog-post-container">
-
 				<div className="blog-post-layout">
 					<article className="blog-post-content">
 						<div className="post-meta">
@@ -75,7 +85,8 @@ export default function BlogPost() {
 					<aside className="blog-sidebar">
 						<section className="sidebar-card">
 							<h3>Kategorije</h3>
-							{categories.map((category) => (
+
+							{blogCategories.map((category) => (
 								<Link
 									key={category.id}
 									to={`/blog?category=${category.id}`}
@@ -88,7 +99,7 @@ export default function BlogPost() {
 						<section className="sidebar-card">
 							<h3>Istaknuti postovi</h3>
 
-							{latestPosts.map((item) => (
+							{filteredLatestPosts.map((item) => (
 								<Link
 									key={item.id}
 									to={`/blog/${item.slug}`}
@@ -116,22 +127,21 @@ export default function BlogPost() {
 							rel="noreferrer"
 							className="instagram-card"
 						>
-							<div className="instagram-card">
+							<img src={instagram} alt="instagram" />
 
-								<img src={instagram} alt="instagram" />
-								<h3>Pratite nas</h3>
+							<h3>Pratite nas</h3>
 
-								<span className="instagram-handle">
-									@mohair.studio
-								</span>
+							<span className="instagram-handle">
+								@mohair.studio
+							</span>
 
-								<p>
-									za još inspiracije i novosti!
-								</p>
+							<p>
+								za još inspiracije i novosti!
+							</p>
 
-								<span className="instagram-heart">♡</span>
-							</div>
+							<span className="instagram-heart">♡</span>
 						</a>
+
 						<CollaborationBanner />
 					</aside>
 				</div>

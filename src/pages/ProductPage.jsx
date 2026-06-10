@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import {
   Heart,
@@ -13,7 +13,7 @@ import {
   HandHeart,
   RulerDimensionLine
 } from 'lucide-react'
-import { api } from '../services/api'
+import { useAppData } from '../context/AppDataContext'
 import { useCart } from '../context/CartContext.jsx'
 import "../styles/product.css"
 import yarnHart from '../assets/yarn-heart.png'
@@ -21,13 +21,42 @@ import yarnHart from '../assets/yarn-heart.png'
 export default function ProductPage() {
   const { slug } = useParams()
   const { addToCart } = useCart()
+  const { products, categories, loading } = useAppData()
 
-  const [product, setProduct] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
   const [quantity, setQuantity] = useState(1)
-  const [loading, setLoading] = useState(true)
-  const [categories, setCategories] = useState([])
   const [activeTab, setActiveTab] = useState('opis')
+
+  const product = useMemo(() => {
+    return products.find((item) => item.slug === slug) || null
+  }, [products, slug])
+
+  useEffect(() => {
+    if (!product) return
+
+    const mainImage =
+      product.images?.find(image => image.is_main) ||
+      product.images?.[0] ||
+      null
+
+    setSelectedImage(mainImage)
+    setQuantity(1)
+    setActiveTab('opis')
+  }, [product])
+
+  if (loading) {
+    return <main className="product-detail-page">Učitavanje proizvoda...</main>
+  }
+
+  if (!product) {
+    return <main className="product-detail-page">Proizvod nije pronađen.</main>
+  }
+
+  const category = categories.find(
+    c => c.id === product.category_id
+  )
+
+  const images = product.images || []
 
   const tabs = [
     {
@@ -40,11 +69,9 @@ export default function ProductPage() {
     {
       id: 'info',
       label: 'Dodatne informacije',
-      content: <><p>
-        {product?.additional_info ||
-          'Materijal: moher i prirodna vuna. Svaki proizvod je ručno izrađen, pa su moguća blaga odstupanja.'} ,
-      </p>
-      </>
+      content:
+        product?.additional_info ||
+        'Materijal: moher i prirodna vuna. Svaki proizvod je ručno izrađen, pa su moguća blaga odstupanja.',
     },
     {
       id: 'care',
@@ -56,52 +83,6 @@ export default function ProductPage() {
   ]
 
   const activeContent = tabs.find((tab) => tab.id === activeTab)
-
-  useEffect(() => {
-    async function loadProduct() {
-      try {
-        setLoading(true)
-
-        const data = await api.getProduct(slug)
-        setProduct(data)
-
-        const mainImage =
-          data.images?.find(image => image.is_main) ||
-          data.images?.[0] ||
-          null
-
-        setSelectedImage(mainImage)
-      } catch (error) {
-        console.error('Greška pri učitavanju proizvoda:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadProduct()
-  }, [slug])
-
-  useEffect(() => {
-    async function loadCategories() {
-      const data = await api.getCategories()
-      setCategories(data)
-    }
-
-    loadCategories()
-  }, [])
-
-  if (loading) {
-    return <main className="product-detail-page">Učitavanje proizvoda...</main>
-  }
-
-  if (!product) {
-    return <main className="product-detail-page">Proizvod nije pronađen.</main>
-  }
-  const category = categories.find(
-    c => c.id === product.category_id
-  )
-
-  const images = product.images || []
 
   return (
     <>
@@ -118,6 +99,7 @@ export default function ProductPage() {
           {product.name}
         </span>
       </nav>
+
       <main className="product-detail-page">
         <section className="product-detail-container">
           <div className="product-gallery">
@@ -126,12 +108,11 @@ export default function ProductPage() {
                 <button
                   key={image.id}
                   type="button"
-                  className={`thumbnail-btn ${selectedImage?.id === image.id ? 'active' : ''
-                    }`}
+                  className={`thumbnail-btn ${selectedImage?.id === image.id ? 'active' : ''}`}
                   onClick={() => setSelectedImage(image)}
                 >
                   <img
-                    src={`${image.image_path}`}
+                    src={image.image_path}
                     alt={image.alt_text || product.name}
                   />
                 </button>
@@ -141,7 +122,7 @@ export default function ProductPage() {
             <div className="product-main-image">
               {selectedImage && (
                 <img
-                  src={`${selectedImage.image_path}`}
+                  src={selectedImage.image_path}
                   alt={selectedImage.alt_text || product.name}
                 />
               )}
@@ -158,7 +139,7 @@ export default function ProductPage() {
             </button>
 
             <span className="product-category">
-              {category?.name || category?.name || 'Proizvod'}
+              {category?.name || 'Proizvod'}
             </span>
 
             <h1>{product.name}</h1>
@@ -189,6 +170,7 @@ export default function ProductPage() {
                 </div>
                 <strong>{product.color || '—'}</strong>
               </div>
+
               <div className="product-spec">
                 <div className="spec-label">
                   <RulerDimensionLine size={19} />
@@ -279,6 +261,7 @@ export default function ProductPage() {
             </section>
           </div>
         </section>
+
         <section className="product-info-panel">
           <div className="product-tabs">
             {tabs.map((tab) => (
@@ -294,7 +277,7 @@ export default function ProductPage() {
           </div>
 
           <div className="product-info-content">
-            <p>{activeContent.content}</p>
+            <p>{activeContent?.content}</p>
 
             <div className="handmade-note">
               <div className="handmade-icon">

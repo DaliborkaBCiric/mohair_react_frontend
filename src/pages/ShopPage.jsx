@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { api } from '../services/api'
-import "../styles/shop.css";
+import { useAppData } from '../context/AppDataContext'
+import "../styles/shop.css"
 import ProductGrid from '../components/product/ProductGrid.jsx'
 import allIcon from '../assets/all_categories.png'
 import amigurumiIcon from '../assets/amigurumi_icon.png'
@@ -9,7 +9,7 @@ import blanketIcon from '../assets/blanket_icon.png'
 import setIcon from '../assets/set_icon.png'
 import socksIcon from '../assets/socks_icon.png'
 import { SlidersHorizontal } from "lucide-react"
-import CollaborationBanner from '../components/banners/CollaborationBanner.jsx';
+import CollaborationBanner from '../components/banners/CollaborationBanner.jsx'
 
 function slugify(value) {
   return String(value || '')
@@ -38,14 +38,12 @@ function getCategoryIcon(icon) {
 }
 
 export default function ShopPage() {
+  const { products, categories, loading } = useAppData()
 
   const [searchParams, setSearchParams] = useSearchParams()
   const selectedCategory = searchParams.get('category') || ''
-  const [categories, setCategories] = useState([])
-  const [products, setProducts] = useState([])
+
   const [maxPrice, setMaxPrice] = useState(8000)
-  const [, setLoadingCategories] = useState(true)
-  const [, setLoadingProducts] = useState(false)
   const [selectedMaterials, setSelectedMaterials] = useState([])
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [sortBy, setSortBy] = useState('newest')
@@ -73,11 +71,15 @@ export default function ShopPage() {
     )
   }, [products])
 
+  useEffect(() => {
+    if (maxProductPrice > 0) {
+      setMaxPrice(maxProductPrice)
+    }
+  }, [maxProductPrice])
 
   const filtered = useMemo(() => {
     const result = products.filter((p) => {
       const productPrice = p.sale_price || p.price
-
       const productCategory = categories.find((c) => c.id === p.category_id)
 
       const matchCategory =
@@ -107,42 +109,6 @@ export default function ShopPage() {
     })
   }, [products, categories, selectedCategory, maxPrice, selectedMaterials, sortBy])
 
-  useEffect(() => {
-    loadCategories()
-    loadProducts()
-  }, [])
-
-  useEffect(() => {
-    if (maxProductPrice > 0) {
-      setMaxPrice(maxProductPrice)
-    }
-  }, [maxProductPrice])
-
-  async function loadProducts() {
-    try {
-      setLoadingProducts(true)
-
-      const data = await api.getProducts()
-
-      setProducts(data)
-    } catch (error) {
-      console.error('Greška pri učitavanju proizvoda:', error)
-    } finally {
-      setLoadingProducts(false)
-    }
-  }
-
-  async function loadCategories() {
-    try {
-      const data = await api.getCategories()
-      setCategories(data)
-    } catch (error) {
-      console.error('Greška pri učitavanju kategorija:', error)
-    } finally {
-      setLoadingCategories(false)
-    }
-  }
-
   const categoryCounts = useMemo(() => {
     const counts = {}
 
@@ -153,6 +119,10 @@ export default function ShopPage() {
 
     return counts
   }, [products])
+
+  if (loading) {
+    return <p>Učitavanje...</p>
+  }
 
   return (
     <>
@@ -166,8 +136,14 @@ export default function ShopPage() {
         </div>
 
         <nav className="shop-categories">
-          <button type="button" className={`shop-category ${!selectedCategory ? 'active' : ''}`} onClick={() => setSearchParams({})}>
-            <span className="shop-category__icon"><img width="80px" src={allIcon} alt="sve kategorie" /></span>
+          <button
+            type="button"
+            className={`shop-category ${!selectedCategory ? 'active' : ''}`}
+            onClick={() => setSearchParams({})}
+          >
+            <span className="shop-category__icon">
+              <img width="80px" src={allIcon} alt="Sve kategorije" />
+            </span>
             <span>Svi proizvodi</span>
           </button>
 
@@ -178,21 +154,24 @@ export default function ShopPage() {
               className={`shop-category ${selectedCategory === getCategorySlug(c) ? 'active' : ''}`}
               onClick={() => setSearchParams({ category: getCategorySlug(c) })}
             >
-              <span className="shop-category__icon"><img width="60px" src={getCategoryIcon(c.icon)} alt={c.name} /></span>
+              <span className="shop-category__icon">
+                <img width="60px" src={getCategoryIcon(c.icon)} alt={c.name} />
+              </span>
               <span>{c.name}</span>
             </button>
           ))}
-
         </nav>
       </section>
+
       <section className="page container">
-        <div className='top-filter'>
+        <div className="top-filter">
           <button
             className="btn-soft"
             onClick={() => setFiltersOpen(true)}
           >
             <SlidersHorizontal /> Filteri
           </button>
+
           <div className="shop-toolbar">
             <label htmlFor="sort">Sortiraj po:</label>
 
@@ -213,15 +192,23 @@ export default function ShopPage() {
 
         <div className="shop-layout">
           {filtersOpen && (
-            <div className="filter-overlay" onClick={closeFilters}></div>
+            <div
+              className="filter-overlay"
+              onClick={closeFilters}
+            />
           )}
+
           <aside className={`shop-sidebar ${filtersOpen ? 'open' : ''}`}>
-            <button className="filter-close" onClick={closeFilters}>
+            <button
+              className="filter-close"
+              onClick={closeFilters}
+            >
               ×
             </button>
 
             <section className="filter-section">
               <h3>Kategorije</h3>
+
               <ul className="category-list">
                 {[
                   { id: 0, name: 'Svi proizvodi' },
@@ -243,11 +230,13 @@ export default function ShopPage() {
                         href={cat.id === 0 ? '/prodavnica' : `/prodavnica?category=${getCategorySlug(cat)}`}
                         onClick={(e) => {
                           e.preventDefault()
+
                           if (cat.id === 0) {
                             setSearchParams({})
                           } else {
                             setSearchParams({ category: getCategorySlug(cat) })
                           }
+
                           closeFilters()
                         }}
                       >
@@ -269,8 +258,11 @@ export default function ShopPage() {
                   min="0"
                   max={maxProductPrice}
                   value={maxPrice}
-                  onChange={(e) => { setMaxPrice(Number(e.target.value)) }}
+                  onChange={(e) => {
+                    setMaxPrice(Number(e.target.value))
+                  }}
                 />
+
                 <div className="price-values">
                   <span>0 RSD</span>
                   <span>{maxPrice.toLocaleString('sr-RS')} RSD</span>
@@ -295,8 +287,10 @@ export default function ShopPage() {
                 </label>
               ))}
             </section>
+
             <CollaborationBanner />
           </aside>
+
           <ProductGrid products={filtered} />
         </div>
       </section>

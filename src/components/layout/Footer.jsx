@@ -7,10 +7,19 @@ import {
   FaFacebookF,
   FaPinterestP
 } from 'react-icons/fa'
+import { useAppData } from '../../context/AppDataContext'
 
 import logo from '../../assets/logo-main.png'
 
 export default function Footer() {
+  const {
+    categories,
+    loading
+  } = useAppData()
+
+  if (loading) {
+    return <p>Učitavanje...</p>
+  }
   return (
     <footer className="footer">
       <section className="service-strip">
@@ -70,10 +79,9 @@ export default function Footer() {
         <div className="footer-column">
           <h4>PROIZVODI</h4>
           <Link to="/prodavnica">Svi proizvodi</Link>
-          <Link to="/prodavnica?category=setovi-za-bebe">Setovi za bebe</Link>
-          <Link to="/prodavnica?category=amigurumi-igracke">Amigurumi igračke</Link>
-          <Link to="/prodavnica?category=vunene-carape">Vunene čarape</Link>
-          <Link to="/prodavnica?category=dekice-i-prekrivaci">Dekice i prekrivači</Link>
+          {categories.map(category => (
+            <Link key={category.id} to={`/prodavnica?category=${category.slug}`}>{category.name}</Link>
+          ))}
         </div>
 
         <div className="footer-column">
