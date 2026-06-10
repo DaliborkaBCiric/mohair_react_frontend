@@ -132,12 +132,6 @@ button {
   width: 100%;
 }
 
-.nav-icons {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
 .hamburger {
   display: none;
   border: 0;
@@ -393,7 +387,6 @@ h2 {
 }
 
 .category-grid,
-.product-grid,
 .blog-grid {
   display: grid;
   gap: 24px;
@@ -402,10 +395,6 @@ h2 {
 .category-grid {
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
-}
-
-.product-grid {
-  grid-template-columns: repeat(4, 1fr);
 }
 
 .blog-grid {
@@ -982,7 +971,6 @@ h2 {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .product-grid,
   .category-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1103,7 +1091,6 @@ h2 {
   }
 
   .service-strip-inner,
-  .product-grid,
   .category-grid,
   .blog-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1200,15 +1187,6 @@ h2 {
     top: 76px;
   }
 
-  .nav-icons {
-    gap: 13px;
-  }
-
-  .nav-icons>svg:nth-child(1),
-  .nav-icons>svg:nth-child(2) {
-    display: none;
-  }
-
   .hero {
     padding: 115px 0 26px;
     background-position: 62% bottom;
@@ -1256,7 +1234,6 @@ h2 {
   }
 
   .service-strip-inner,
-  .product-grid,
   .category-grid,
   .blog-grid {
     grid-template-columns: 1fr;

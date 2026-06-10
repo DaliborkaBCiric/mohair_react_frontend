@@ -1,20 +1,51 @@
 import { useMemo, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { api } from '../services/api'
 import "../styles/shop.css";
 import ProductGrid from '../components/product/ProductGrid.jsx'
 import allIcon from '../assets/all_categories.png'
+import amigurumiIcon from '../assets/amigurumi_icon.png'
+import blanketIcon from '../assets/blanket_icon.png'
+import setIcon from '../assets/set_icon.png'
+import socksIcon from '../assets/socks_icon.png'
 import { SlidersHorizontal } from "lucide-react"
 import CollaborationBanner from '../components/banners/CollaborationBanner.jsx';
 
+function slugify(value) {
+  return String(value || '')
+    .toLowerCase()
+    .trim()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'dj')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+function getCategorySlug(category) {
+  return category?.slug || slugify(category?.name)
+}
+
+const categoryIconMap = {
+  'amigurumi_icon.png': amigurumiIcon,
+  'blanket_icon.png': blanketIcon,
+  'set_icon.png': setIcon,
+  'socks_icon.png': socksIcon,
+}
+
+function getCategoryIcon(icon) {
+  return categoryIconMap[icon] || allIcon
+}
+
 export default function ShopPage() {
 
-  const [category, setCategory] = useState(0)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const selectedCategory = searchParams.get('category') || ''
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [maxPrice, setMaxPrice] = useState(8000)
-  const [loadingCategories, setLoadingCategories] = useState(true)
-  const [loadingProducts, setLoadingProducts] = useState(false)
+  const [, setLoadingCategories] = useState(true)
+  const [, setLoadingProducts] = useState(false)
   const [selectedMaterials, setSelectedMaterials] = useState([])
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [sortBy, setSortBy] = useState('newest')
@@ -47,8 +78,10 @@ export default function ShopPage() {
     const result = products.filter((p) => {
       const productPrice = p.sale_price || p.price
 
+      const productCategory = categories.find((c) => c.id === p.category_id)
+
       const matchCategory =
-        category === 0 || p.category_id === category
+        !selectedCategory || getCategorySlug(productCategory) === selectedCategory
 
       const matchPrice =
         productPrice <= maxPrice
@@ -72,7 +105,7 @@ export default function ShopPage() {
 
       return b.id - a.id
     })
-  }, [products, category, maxPrice, selectedMaterials, sortBy])
+  }, [products, categories, selectedCategory, maxPrice, selectedMaterials, sortBy])
 
   useEffect(() => {
     loadCategories()
@@ -133,23 +166,21 @@ export default function ShopPage() {
         </div>
 
         <nav className="shop-categories">
-          <a href="#" className={`shop-category ${category === 0 ? 'active' : ''}`} onClick={(e) => {
-            e.preventDefault()
-            setCategory(0)
-          }}>
+          <button type="button" className={`shop-category ${!selectedCategory ? 'active' : ''}`} onClick={() => setSearchParams({})}>
             <span className="shop-category__icon"><img width="80px" src={allIcon} alt="sve kategorie" /></span>
             <span>Svi proizvodi</span>
-          </a>
+          </button>
 
           {categories.map(c => (
-            <a href="#" key={c.id} className={`shop-category ${category === c.id ? 'active' : ''}`} onClick={(e) => {
-              e.preventDefault()
-              setCategory(c.id)
-            }}
+            <button
+              type="button"
+              key={c.id}
+              className={`shop-category ${selectedCategory === getCategorySlug(c) ? 'active' : ''}`}
+              onClick={() => setSearchParams({ category: getCategorySlug(c) })}
             >
-              <span className="shop-category__icon"><img width="60px" src={`src/assets/${c.icon}`} alt='set' /></span>
+              <span className="shop-category__icon"><img width="60px" src={getCategoryIcon(c.icon)} alt={c.name} /></span>
               <span>{c.name}</span>
-            </a>
+            </button>
           ))}
 
         </nav>
@@ -204,11 +235,19 @@ export default function ShopPage() {
                   return (
                     <li key={cat.id}>
                       <a
-                        className={category === cat.id ? 'active' : ''}
-                        href="#"
+                        className={
+                          cat.id === 0
+                            ? !selectedCategory ? 'active' : ''
+                            : selectedCategory === getCategorySlug(cat) ? 'active' : ''
+                        }
+                        href={cat.id === 0 ? '/prodavnica' : `/prodavnica?category=${getCategorySlug(cat)}`}
                         onClick={(e) => {
                           e.preventDefault()
-                          setCategory(cat.id)
+                          if (cat.id === 0) {
+                            setSearchParams({})
+                          } else {
+                            setSearchParams({ category: getCategorySlug(cat) })
+                          }
                           closeFilters()
                         }}
                       >

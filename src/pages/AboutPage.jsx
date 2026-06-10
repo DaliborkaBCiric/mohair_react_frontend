@@ -6,6 +6,7 @@ import aboutImage from "../../images/about-handmade.png";
 import logo from '../assets/logo-main.png'
 import shieldIcon from "../assets/svg_icons/shield-check.svg"
 import idea from "../assets/svg_icons/idea.svg"
+import CollaborationBanner from "../components/banners/CollaborationBanner";
 
 export default function About() {
   return (
@@ -87,6 +88,8 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <CollaborationBanner />
     </section>
   );
 }

@@ -1,25 +1,25 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { Heart, ShoppingBag } from 'lucide-react'
+import { ShoppingBag } from 'lucide-react'
 import { useCart } from '../../context/CartContext.jsx'
 
 export default function ProductCard({ product }) {
   const [showMessage, setShowMessage] = useState(false)
   const { addToCart } = useCart()
 
-  const handleAddToCart = () => {
-    addToCart(product)
-
+  function handleAddToCart() {
+    addToCart(product, 1)
     setShowMessage(true)
 
     setTimeout(() => {
       setShowMessage(false)
     }, 3000)
   }
+
   return (
     <div className="product-card">
       <div className="product-images">
-        <a href={`/proizvod/${product.slug}`}>
+        <Link to={`/proizvod/${product.slug}`}>
           {product.images?.map((image) => (
             <img
               key={image.id}
@@ -30,18 +30,21 @@ export default function ProductCard({ product }) {
 
           {product.is_new && <span className="product-badge">Novo</span>}
           {product.is_bestseller && <span className="product-badge">Top</span>}
+        </Link>
 
-          <button className="wishlist-btn" type="button">♡</button>
-        </a>
+        <button className="wishlist-btn" type="button">♡</button>
       </div>
 
       <div className="product-info">
-        <a href={`/proizvod/${product.slug}`}><h3>{product.name}</h3></a>
+        <Link to={`/proizvod/${product.slug}`}>
+          <h3>{product.name}</h3>
+        </Link>
+
         <p>{product.material}</p>
 
         <div className="product-bottom">
           <strong>
-            {(product.sale_price || product.price).toLocaleString("sr-RS")} {product.currency}
+            {Number(product.sale_price || product.price).toLocaleString('sr-RS')} {product.currency}
           </strong>
 
           <button className="cart-btn" type="button" onClick={handleAddToCart}>
@@ -49,11 +52,12 @@ export default function ProductCard({ product }) {
           </button>
         </div>
       </div>
+
       {showMessage && (
         <div className="cart-message">
           Proizvod je dodat u korpu
         </div>
       )}
-    </div >
+    </div>
   )
 }

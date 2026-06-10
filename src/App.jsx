@@ -9,6 +9,8 @@ import ContactPage from './pages/ContactPage.jsx'
 import CartPage from './pages/CartPage.jsx'
 import BlogPostPage from './pages/BlogPostPage.jsx'
 import Collaborate from './pages/Collaborate.jsx'
+import Checkout from './pages/Checkout.jsx'
+import OrderSuccess from './pages/OrderSuccess.jsx'
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/korpa" element={<CartPage />} />
+        <Route path="/porucivanje" element={<Checkout />} />
+        <Route path="/uspesna-kupovina" element={<OrderSuccess />} />
         <Route path="/saradnja" element={<Collaborate />} />
       </Routes>
     </MainLayout>

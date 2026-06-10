@@ -5,6 +5,7 @@ import { formatDate } from '../utils/common'
 import '../styles/blog-post.css'
 import instagram from '../assets/svg_icons/instagram.svg'
 import { SITE } from '../confg/config.js'
+import CollaborationBanner from '../components/banners/CollaborationBanner.jsx'
 
 export default function BlogPost() {
 	const { slug } = useParams()
@@ -131,6 +132,7 @@ export default function BlogPost() {
 								<span className="instagram-heart">♡</span>
 							</div>
 						</a>
+						<CollaborationBanner />
 					</aside>
 				</div>
 			</div>

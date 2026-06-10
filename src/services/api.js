@@ -30,5 +30,10 @@ export const api = {
     request('/contact', {
       method: 'POST',
       body: JSON.stringify(payload)
+    }),
+  sendOrder: (payload) =>
+    request('/orders', {
+      method: 'POST',
+      body: JSON.stringify(payload)
     })
 }

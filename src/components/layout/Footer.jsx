@@ -70,10 +70,10 @@ export default function Footer() {
         <div className="footer-column">
           <h4>PROIZVODI</h4>
           <Link to="/prodavnica">Svi proizvodi</Link>
-          <Link to="/prodavnica">Setovi za bebe</Link>
-          <Link to="/prodavnica">Amigurumi igračke</Link>
-          <Link to="/prodavnica">Vunene čarape</Link>
-          <Link to="/prodavnica">Dekice i prekrivači</Link>
+          <Link to="/prodavnica?category=setovi-za-bebe">Setovi za bebe</Link>
+          <Link to="/prodavnica?category=amigurumi-igracke">Amigurumi igračke</Link>
+          <Link to="/prodavnica?category=vunene-carape">Vunene čarape</Link>
+          <Link to="/prodavnica?category=dekice-i-prekrivaci">Dekice i prekrivači</Link>
         </div>
 
         <div className="footer-column">

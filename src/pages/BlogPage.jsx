@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react'
 import { api } from '../services/api'
 import { formatDate } from '../utils/common'
 import '../styles/blog.css'
+import CollaborationBanner from '../components/banners/CollaborationBanner'
 
 export default function Blog() {
 
@@ -40,8 +41,6 @@ export default function Blog() {
   const filtered = useMemo(() => {
     return posts.filter((p) => category === 0 || p.category_id === category)
   }, [posts, category])
-
-  console.log(filtered)
 
 
   return (
@@ -90,6 +89,7 @@ export default function Blog() {
             </article>
           )))}
         </section>
+        <CollaborationBanner />
       </div>
     </main >
   )

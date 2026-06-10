@@ -14,11 +14,13 @@ import {
   RulerDimensionLine
 } from 'lucide-react'
 import { api } from '../services/api'
+import { useCart } from '../context/CartContext.jsx'
 import "../styles/product.css"
 import yarnHart from '../assets/yarn-heart.png'
 
 export default function ProductPage() {
   const { slug } = useParams()
+  const { addToCart } = useCart()
 
   const [product, setProduct] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
@@ -155,7 +157,6 @@ export default function ProductPage() {
               <Heart size={24} />
             </button>
 
-            {console.log(product)}
             <span className="product-category">
               {category?.name || category?.name || 'Proizvod'}
             </span>
@@ -234,7 +235,12 @@ export default function ProductPage() {
                 </button>
               </div>
 
-              <button className="add-to-cart-btn" type="button">
+              <button
+                className="add-to-cart-btn"
+                type="button"
+                onClick={() => addToCart(product, quantity)}
+                disabled={product.stock_quantity <= 0}
+              >
                 <ShoppingBag size={19} />
                 Dodaj u korpu
               </button>

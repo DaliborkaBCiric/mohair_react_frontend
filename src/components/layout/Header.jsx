@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Search, User, ShoppingBag, Menu, X, ChevronDown } from 'lucide-react'
+import { ShoppingBag, Menu, X, ChevronDown } from 'lucide-react'
 import logo from '../../assets/logo-main.png'
 import { useCart } from '../../context/CartContext.jsx'
 
@@ -28,8 +28,6 @@ export default function Header() {
         </nav>
 
         <div className="nav-icons">
-          <Search size={24} />
-          <User size={24} />
           <Link to="/korpa" className="cart-icon">
             <ShoppingBag size={24} />
             <span>{count}</span>
