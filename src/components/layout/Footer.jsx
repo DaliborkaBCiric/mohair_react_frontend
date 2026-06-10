@@ -4,7 +4,6 @@ import { Mail, Truck, BadgeCheck, RotateCcw, Headset } from 'lucide-react'
 
 import {
   FaInstagram,
-  FaFacebookF,
   FaPinterestP
 } from 'react-icons/fa'
 import { useAppData } from '../../context/AppDataContext'
@@ -28,7 +27,7 @@ export default function Footer() {
             <Truck size={40} strokeWidth={0.9} />
             <div>
               <b>BESPLATNA DOSTAVA</b>
-              <span>Za porudžbine preko 60€</span>
+              <span>Za porudžbine preko 5000 RSD</span>
             </div>
           </div>
 
@@ -70,7 +69,6 @@ export default function Footer() {
 
           <div className="footer-social">
             <a href={SITE.socials.instagram}><FaInstagram /></a>
-            <a href={SITE.socials.facebook}><FaFacebookF /></a>
             <a href={SITE.socials.pinterest}><FaPinterestP /></a>
             <a href={`mailto:${SITE.email}`}><Mail /></a>
           </div>
@@ -89,7 +87,6 @@ export default function Footer() {
           <Link to="/o-nama">O nama</Link>
           <Link to="/dostava-i-placanje">Dostava i plaćanje</Link>
           <Link to="/povrat-i-zamena">Povrat i zamena</Link>
-          <Link to="/faq">Česta pitanja</Link>
           <Link to="/kontakt">Kontakt</Link>
         </div>
 

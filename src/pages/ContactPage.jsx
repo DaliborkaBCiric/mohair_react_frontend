@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { PhoneCall, Mail, MapPin, Gift, HeartHandshake } from 'lucide-react'
 import {
   FaInstagram,
-  FaFacebookF,
   FaPinterestP
 } from 'react-icons/fa'
 import contactToys from '../assets/contact-toys.png'
@@ -30,7 +29,6 @@ export default function ContactPage() {
 
           <div className="socials">
             <a href={SITE.socials.instagram} target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-            <a href={SITE.socials.facebook} target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
             <a href={SITE.socials.pinterest} target="_blank" rel="noopener noreferrer"><FaPinterestP /></a>
             <a href={`mailto:${SITE.email}`}><Mail /></a>
           </div>
@@ -88,7 +86,7 @@ export default function ContactPage() {
               <HeartHandshake />
               <div>
                 <h3>BESPLATNA DOSTAVA</h3>
-                <p>Za porudžbine preko 60€</p>
+                <p>Za porudžbine preko 5000 RSD</p>
               </div>
             </div>
 

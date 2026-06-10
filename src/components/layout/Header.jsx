@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <header className="site-header">
-      <div className="top-bar">BESPLATNA DOSTAVA ZA PORUDŽBINE PREKO 60€ ♥</div>
+      <div className="top-bar">BESPLATNA DOSTAVA ZA PORUDŽBINE PREKO 5000 RSD ♥</div>
 
       <div className="header-inner container">
         <Link to="/" className="logo-link" onClick={closeMenu}>

@@ -26,6 +26,7 @@ export const api = {
   getBlogPosts: () => request('/blog'),
   getBlogPost: (slug) => request(`/blog/${slug}`),
   getLatestBlogPosts: () => request('/blog?limit=5'),
+  getPage: (slug) => request(`/${slug}`),
   sendContact: (payload) =>
     request('/contact', {
       method: 'POST',
@@ -35,5 +36,10 @@ export const api = {
     request('/orders', {
       method: 'POST',
       body: JSON.stringify(payload)
-    })
+    }),
+  subscribeNewsletter: (email) =>
+    request('/newsletter', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    }),
 }

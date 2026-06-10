@@ -8,7 +8,6 @@ export const SITE = {
 
   socials: {
     instagram: 'https://www.instagram.com/_mohair_studio_/',
-    facebook: 'https://facebook.com/mohairstudio',
-    pinterest: 'https://pinterest.com/mohairstudio',
+    pinterest: 'https://pinterest.com/19hu13w1j81kidwbtzmzdhhhsk5t92',
   },
 }

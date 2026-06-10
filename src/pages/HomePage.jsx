@@ -17,6 +17,29 @@ export default function HomePage() {
   const [products, setProducts] = useState([])
   const [loadingCategories, setLoadingCategories] = useState(true)
   const [loadingProducts, setLoadingProducts] = useState(true)
+  const [email, setEmail] = useState('')
+  const [success, setSuccess] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    try {
+      setLoading(true)
+      setSuccess('')
+      setError('')
+
+      const data = await api.subscribeNewsletter(email)
+
+      setSuccess(data.message)
+      setEmail('')
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
 
 
   useEffect(() => {
@@ -93,7 +116,7 @@ export default function HomePage() {
           <div className="benefit-item">
             <img src={TruckIcon} alt="" />
             <b>BESPLATNA DOSTAVA</b>
-            <span>Za porudžbine preko 60€</span>
+            <span>Za porudžbine preko 5000 RSD</span>
           </div>
         </div>
       </section>
@@ -150,8 +173,6 @@ export default function HomePage() {
               Svaki proizvod dolazi pažljivo zapakovan,
               spreman za darivanje.
             </p>
-
-            <a href="#">SAZNAJ VIŠE →</a>
           </div>
         </div>
 
@@ -168,16 +189,21 @@ export default function HomePage() {
               i ostvarite 10% popusta na prvu porudžbinu.
             </p>
 
-            <form className="newsletter-form">
+            <form className="newsletter-form" onSubmit={handleSubmit}>
               <input
                 type="email"
-                placeholder="Unesite vaš email"
+                placeholder="Tvoja email adresa"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
 
-              <button type="submit">
-                PRIJAVI ME
+              <button type="submit" disabled={loading}>
+                {loading ? 'Slanje...' : 'Prijavi se'}
               </button>
             </form>
+            {success && <p className="newsletter-success">{success}</p>}
+            {error && <p className="newsletter-error">{error}</p>}
           </div>
         </div>
 

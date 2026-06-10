@@ -679,6 +679,18 @@ h2 {
   font-weight: 600;
 }
 
+.newsletter-success {
+  color: #497a4f;
+  font-size: 13px;
+  margin: 0;
+}
+
+.newsletter-error {
+  color: #b94a48;
+  font-size: 13px;
+  margin: 0;
+}
+
 .product-card {
   position: relative;
 }

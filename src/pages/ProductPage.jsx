@@ -235,7 +235,7 @@ export default function ProductPage() {
                 </div>
                 <div>
                   <h4>Besplatna dostava</h4>
-                  <p>preko 60€</p>
+                  <p>preko 5000 RSD</p>
                 </div>
               </div>
 
