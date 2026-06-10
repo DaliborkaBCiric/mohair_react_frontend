@@ -31,8 +31,6 @@ export default function ProductCard({ product }) {
           {product.is_new && <span className="product-badge">Novo</span>}
           {product.is_bestseller && <span className="product-badge">Top</span>}
         </Link>
-
-        <button className="wishlist-btn" type="button">♡</button>
       </div>
 
       <div className="product-info">

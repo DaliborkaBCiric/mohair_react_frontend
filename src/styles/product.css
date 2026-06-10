@@ -145,21 +145,6 @@
 	color: #7d7070;
 }
 
-.favorite-btn {
-	position: absolute;
-	top: 10px;
-	right: 0;
-	width: 46px;
-	height: 46px;
-	border-radius: 50%;
-	border: 1px solid #eadad7;
-	background: #fff;
-	color: #3f302d;
-	display: grid;
-	place-items: center;
-	cursor: pointer;
-}
-
 .product-category {
 	color: #c87878;
 	font-size: 13px;
@@ -529,11 +514,6 @@
 	.product-main-image img {
 		height: auto;
 		aspect-ratio: 1 / 1.05;
-	}
-
-	.favorite-btn {
-		width: 42px;
-		height: 42px;
 	}
 
 	.product-info h1 {

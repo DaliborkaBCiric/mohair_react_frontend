@@ -146,10 +146,6 @@ export default function ProductPage() {
           </div>
 
           <div className="product-info">
-            <button className="favorite-btn" type="button">
-              <Heart size={24} />
-            </button>
-
             <span className="product-category">
               {category?.name || 'Proizvod'}
             </span>
