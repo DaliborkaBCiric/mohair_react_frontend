@@ -64,7 +64,7 @@ export function CartProvider({ children }) {
           price: getProductPrice(product),
           currency: product.currency || 'RSD',
           image: getProductImage(product),
-          material: product.material,
+          material: product.material.name,
           quantity: selectedQuantity,
         },
       ]

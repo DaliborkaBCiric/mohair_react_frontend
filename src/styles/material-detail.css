@@ -1,0 +1,380 @@
+.material-detail-page {
+	background: #fffaf7;
+	color: #5b4a4a;
+}
+
+.material-detail {
+	padding: 80px 0 70px;
+}
+
+.material-breadcrumb {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	margin-bottom: 22px;
+	font-size: 13px;
+	color: #7a6b6b;
+}
+
+.material-breadcrumb a {
+	color: #6a5d5d;
+	text-decoration: none;
+}
+
+.material-breadcrumb a:hover {
+	color: #d09b97;
+}
+
+.material-detail-grid {
+	display: grid;
+	grid-template-columns: 430px 1fr;
+	gap: 62px;
+	align-items: center;
+}
+
+.material-detail-image {
+	border-radius: 8px;
+	overflow: hidden;
+	background: #f6eee9;
+}
+
+.material-detail-image img {
+	width: 100%;
+	height: 560px;
+	object-fit: cover;
+	display: block;
+}
+
+.material-detail-content {
+	max-width: 700px;
+}
+
+.material-detail-content h1 {
+	margin: 0 0 8px;
+	font-family: 'Playfair Display', serif;
+	font-size: 50px;
+	font-weight: 500;
+	font-style: italic;
+	color: #4f4242;
+}
+
+.material-title-divider {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 24px;
+}
+
+.material-title-divider span {
+	width: 64px;
+	height: 1px;
+	background: #d9aaa6;
+}
+
+.material-title-divider small {
+	color: #d9aaa6;
+	font-size: 15px;
+	line-height: 1;
+}
+
+.material-description {
+	max-width: 610px;
+	margin: 0 0 42px;
+	font-size: 15px;
+	line-height: 1.9;
+	color: #5f5353;
+}
+
+.material-features-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 30px 56px;
+}
+
+.material-feature {
+	display: grid;
+	grid-template-columns: 42px 1fr;
+	gap: 14px;
+	align-items: start;
+}
+
+.material-feature svg {
+	color: #d09b97;
+	margin-top: 2px;
+}
+
+.material-feature h3 {
+	margin: 0 0 5px;
+	font-family: 'Playfair Display', serif;
+	font-size: 19px;
+	font-weight: 500;
+	color: #4f4242;
+}
+
+.material-feature p {
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.6;
+	color: #746767;
+}
+
+.material-status {
+	padding: 60px 20px;
+	text-align: center;
+	color: #7a6b6b;
+}
+
+/* =========================
+   CARE & IDEAL FOR
+========================= */
+
+.material-info-section {
+	margin-top: 10px;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr 360px;
+	gap: 50px;
+
+	padding: 50px 60px;
+
+	background: linear-gradient(90deg,
+			#fffaf7 0%,
+			#fff6f2 50%,
+			#f8ede8 100%);
+
+	border-top: 1px solid rgba(106, 93, 93, 0.08);
+}
+
+.material-care {
+	padding-right: 40px;
+	border-right: 1px solid rgba(106, 93, 93, 0.12);
+}
+
+.material-care h2,
+.material-ideal h2 {
+	margin: 0 0 30px;
+
+	text-align: center;
+
+	font-family: 'Playfair Display', serif;
+	font-size: 30px;
+	font-weight: 500;
+
+	color: #4f4242;
+}
+
+.care-list {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.care-item {
+	display: grid;
+	grid-template-columns: 40px 1fr;
+	gap: 18px;
+	align-items: start;
+}
+
+.care-item span {
+	width: 34px;
+	height: 34px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border: 1px solid #6a5d5d;
+	border-radius: 50%;
+
+	font-size: 14px;
+	color: #6a5d5d;
+}
+
+.care-item p {
+	margin: 0;
+
+	font-size: 14px;
+	line-height: 1.8;
+
+	color: #5f5353;
+}
+
+.material-ideal ul {
+	margin: 0;
+	padding-left: 18px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.material-ideal li {
+	font-size: 14px;
+	line-height: 1.8;
+	color: #5f5353;
+}
+
+.material-ideal li::marker {
+	color: #d09b97;
+}
+
+.material-info-image {
+	min-height: 320px;
+
+	border-radius: 8px;
+
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.material-products-banner {
+	display: grid;
+	grid-template-columns: 38% 62%;
+	min-height: 190px;
+	margin-top: 60px;
+	background: linear-gradient(90deg, #f9e2df 0%, #fff1ee 55%, #f7deda 100%);
+	overflow: hidden;
+}
+
+.material-products-image {
+	background:
+		linear-gradient(90deg,
+			rgba(255, 241, 238, 0) 0%,
+			rgba(255, 241, 238, 0.65) 100%),
+		url('/images/materials/material-products-banner.png') center/cover no-repeat;
+}
+
+.material-products-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	text-align: center;
+	padding: 30px 24px;
+}
+
+.material-products-heart {
+	color: #d29b98;
+	font-size: 34px;
+	line-height: 1;
+	margin-bottom: 8px;
+}
+
+.material-products-content h2 {
+	margin: 0 0 10px;
+	font-family: 'Playfair Display', serif;
+	font-size: 25px;
+	font-weight: 500;
+	color: #5b4a4a;
+}
+
+.material-products-content p {
+	margin: 0 0 18px;
+	font-size: 13px;
+	line-height: 1.7;
+	color: #6a5d5d;
+}
+
+.material-products-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 11px 22px;
+	border-radius: 4px;
+
+	background: #d99c9a;
+	color: #fff;
+
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: none;
+
+	transition: 0.25s ease;
+}
+
+.material-products-btn:hover {
+	background: #c88987;
+	transform: translateY(-1px);
+}
+
+@media (max-width: 1100px) {
+	.material-info-section {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.material-info-image {
+		grid-column: 1 / -1;
+		min-height: 260px;
+	}
+}
+
+@media (max-width: 1000px) {
+	.material-detail-grid {
+		grid-template-columns: 1fr;
+		gap: 34px;
+	}
+
+	.material-detail-image img {
+		height: 420px;
+	}
+}
+
+@media (max-width: 768px) {
+	.material-products-banner {
+		grid-template-columns: 1fr;
+	}
+
+	.material-products-image {
+		min-height: 180px;
+	}
+}
+
+
+@media (max-width: 640px) {
+	.material-detail {
+		padding: 18px 0 50px;
+	}
+
+	.material-detail-content h1 {
+		font-size: 38px;
+	}
+
+	.material-features-grid {
+		grid-template-columns: 1fr;
+		gap: 22px;
+	}
+
+	.material-detail-image img {
+		height: 340px;
+	}
+
+	.material-info-section {
+		grid-template-columns: 1fr;
+
+		padding: 40px 24px;
+		gap: 40px;
+	}
+
+	.material-care {
+		border-right: none;
+		border-bottom: 1px solid rgba(106, 93, 93, 0.12);
+
+		padding-right: 0;
+		padding-bottom: 30px;
+	}
+
+	.material-care h2,
+	.material-ideal h2 {
+		font-size: 26px;
+	}
+
+	.material-info-image {
+		min-height: 220px;
+	}
+}

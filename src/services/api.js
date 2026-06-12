@@ -27,6 +27,8 @@ export const api = {
   getBlogPost: (slug) => request(`/blog/${slug}`),
   getLatestBlogPosts: () => request('/blog?limit=5'),
   getPage: (slug) => request(`/${slug}`),
+  getMaterials: () => request('/materials'),
+  getMaterial: (slug) => request(`/materials/${slug}`),
   sendContact: (payload) =>
     request('/contact', {
       method: 'POST',

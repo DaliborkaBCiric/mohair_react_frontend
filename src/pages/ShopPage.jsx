@@ -53,7 +53,7 @@ export default function ShopPage() {
   }
 
   const materials = useMemo(() => {
-    return [...new Set(products.map(p => p.material).filter(Boolean))]
+    return [...new Set(products.map(p => p.material.name).filter(Boolean))]
   }, [products])
 
   function toggleMaterial(material) {
@@ -90,7 +90,7 @@ export default function ShopPage() {
 
       const matchMaterial =
         selectedMaterials.length === 0 ||
-        selectedMaterials.includes(p.material)
+        selectedMaterials.includes(p.name)
 
       return matchCategory && matchPrice && matchMaterial
     })

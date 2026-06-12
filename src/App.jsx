@@ -12,6 +12,8 @@ import Collaborate from './pages/Collaborate.jsx'
 import Checkout from './pages/Checkout.jsx'
 import OrderSuccess from './pages/OrderSuccess.jsx'
 import StaticPage from './pages/StaticPage.jsx'
+import MaterialsPage from './pages/MaterialsPage.jsx'
+import MaterialDetailPage from './pages/MaterialDetailPage.jsx'
 
 export default function App() {
   return (
@@ -29,6 +31,8 @@ export default function App() {
         <Route path="/uspesna-kupovina" element={<OrderSuccess />} />
         <Route path="/saradnja" element={<Collaborate />} />
         <Route path="/:slug" element={<StaticPage />} />
+        <Route path="/materijali" element={<MaterialsPage />} />
+        <Route path="/materijal/:slug" element={<MaterialDetailPage />} />
       </Routes>
     </MainLayout>
   )

@@ -94,6 +94,7 @@ export default function Footer() {
           <h4>KORISNI LINKOVI</h4>
           <Link to="/saradnja">Saradnja</Link>
           <Link to="/blog">Blog</Link>
+          <Link to="/materijali">Materijali</Link>
           <Link to="/uslovi-koriscenja">Uslovi korišćenja</Link>
           <Link to="/politika-privatnosti">Politika privatnosti</Link>
         </div>

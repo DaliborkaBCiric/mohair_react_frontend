@@ -48,7 +48,7 @@ export default function CartPage() {
 
               <div className="cart-item-info">
                 <Link to={`/proizvod/${item.slug}`}><h3>{item.name}</h3></Link>
-                <p>{item.material || 'Ručno rađeno sa ljubavlju'}</p>
+                <p>{item.material.name || 'Ručno rađeno sa ljubavlju'}</p>
 
                 <div className="cart-mobile-price">
                   {item.price.toLocaleString('sr-RS')} {item.currency}

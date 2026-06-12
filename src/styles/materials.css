@@ -1,0 +1,343 @@
+/* =========================
+   MATERIALS PAGE
+========================= */
+
+.materials-page {
+	background: #fffaf7;
+	color: #5b4a4a;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.materials-hero {
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
+	background:
+		linear-gradient(90deg,
+			rgba(255, 250, 247, 0.05) 0%,
+			rgba(255, 250, 247, 0.18) 28%,
+			rgba(255, 250, 247, 0.88) 52%,
+			rgba(255, 250, 247, 0.98) 100%),
+		url('/images/materials/materials-hero.png') left center / cover no-repeat;
+
+	border-bottom: 1px solid rgba(106, 93, 93, 0.12);
+}
+
+.materials-hero-content {
+	width: 55%;
+	text-align: center;
+	padding-right: 7%;
+}
+
+.materials-hero-content h1 {
+	margin: 0 0 12px;
+	font-family: 'Playfair Display', serif;
+	font-size: clamp(46px, 5vw, 72px);
+	font-weight: 500;
+	line-height: 1;
+	color: #5b4a4a;
+}
+
+.materials-title-divider {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 14px;
+	margin-bottom: 20px;
+}
+
+.materials-title-divider span {
+	width: 48px;
+	height: 1px;
+	background: #d9aaa6;
+}
+
+.materials-title-divider small {
+	color: #d9aaa6;
+	font-size: 16px;
+}
+
+.materials-hero-content p {
+	margin: 0;
+	font-size: 15px;
+	line-height: 1.9;
+	color: #655959;
+}
+
+.materials-leaf {
+	margin-top: 18px;
+	color: #d9aaa6;
+	font-size: 28px;
+}
+
+/* =========================
+   MATERIALS TITLE
+========================= */
+
+.materials-list-section {
+	padding: 30px 0 70px;
+}
+
+.section-title-wrapper {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.section-title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 18px;
+	margin-bottom: 0px !important;
+}
+
+.section-title span {
+	width: 110px;
+	height: 1px;
+	background: #e2bbb6;
+}
+
+.section-title h2 {
+	padding: 0 10px 8px !important;
+	margin: 0;
+	font-family: 'Playfair Display', serif;
+	font-size: 32px;
+	font-weight: 500;
+	color: #5b4a4a;
+}
+
+.section-heart {
+	color: #d9aaa6;
+	font-size: 15px;
+	line-height: 1;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.materials-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 26px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.material-card {
+	display: block;
+
+	background: #fffdfb;
+
+	border: 1px solid rgba(106, 93, 93, 0.08);
+	border-radius: 12px;
+
+	overflow: hidden;
+
+	text-decoration: none;
+	color: inherit;
+
+	transition: all 0.25s ease;
+}
+
+.material-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 18px 40px rgba(106, 93, 93, 0.1);
+}
+
+.material-card-image {
+	height: 220px;
+	overflow: hidden;
+}
+
+.material-card-image img {
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;
+	transition: transform 0.35s ease;
+}
+
+.material-card:hover img {
+	transform: scale(1.05);
+}
+
+.material-card-body {
+	padding: 18px;
+	text-align: center;
+}
+
+.material-card-body h3 {
+	margin: 0 0 10px;
+
+	font-family: 'Playfair Display', serif;
+	font-size: 28px;
+	font-weight: 500;
+
+	color: #4f4242;
+}
+
+.material-card-body p {
+	min-height: 60px;
+
+	margin: 0 0 16px;
+
+	font-size: 13px;
+	line-height: 1.7;
+
+	color: #746767;
+}
+
+.material-card-body strong {
+	display: inline-block;
+
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+
+	color: #5b4a4a;
+}
+
+/* =========================
+   CARE BANNER
+========================= */
+
+.materials-care-banner {
+	display: grid;
+	grid-template-columns: 1fr 420px;
+
+	margin-top: 60px;
+
+	background: linear-gradient(90deg,
+			#fff1ee 0%,
+			#fff7f4 60%,
+			#f8e3de 100%);
+
+	overflow: hidden;
+}
+
+.materials-care-content {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+
+	padding: 28px 50px;
+}
+
+.materials-care-icon {
+	font-size: 54px;
+	color: #d6a3a0;
+	line-height: 1;
+}
+
+.materials-care-content p {
+	margin: 0;
+
+	font-size: 16px;
+	line-height: 1.8;
+
+	color: #655959;
+}
+
+.materials-care-image {
+	position: relative;
+	min-height: 140px;
+
+	background:
+		url('/images/materials/materials-care-banner.png') center center / cover no-repeat;
+}
+
+.materials-care-image::before {
+	content: "";
+
+	position: absolute;
+	inset: 0;
+
+	background: linear-gradient(90deg,
+			#fff6f3 0%,
+			rgba(255, 246, 243, 0.92) 18%,
+			rgba(255, 246, 243, 0.45) 45%,
+			rgba(255, 246, 243, 0) 80%);
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.materials-status {
+	text-align: center;
+	color: #7d6f6f;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+	.materials-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 900px) {
+	.materials-hero {
+		height: auto;
+		min-height: 260px;
+		justify-content: center;
+	}
+
+	.materials-hero-content {
+		width: 100%;
+		padding: 40px 24px;
+	}
+
+	.materials-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.materials-care-banner {
+		grid-template-columns: 1fr;
+	}
+
+	.materials-care-image {
+		min-height: 180px;
+	}
+}
+
+@media (max-width: 600px) {
+	.materials-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.section-title span {
+		width: 50px;
+	}
+
+	.section-title h2 {
+		font-size: 26px;
+	}
+
+	.materials-hero-content h1 {
+		font-size: 42px;
+	}
+
+	.materials-care-content {
+		padding: 24px;
+		gap: 16px;
+	}
+
+	.materials-care-icon {
+		font-size: 40px;
+	}
+
+	.materials-care-content p {
+		font-size: 14px;
+	}
+}

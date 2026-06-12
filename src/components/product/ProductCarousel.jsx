@@ -47,7 +47,7 @@ export default function ProductCarousel({ products }) {
 
 								<div className="carousel-product-info">
 									<h3>{product.name}</h3>
-									<p>{product.material}</p>
+									<p>{product.material.name}</p>
 
 									<div className="product-bottom">
 										<span>{product.price} {product.currency}</span>

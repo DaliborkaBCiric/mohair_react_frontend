@@ -1,7 +1,6 @@
 import { useMemo, useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import {
-  Heart,
   ShoppingBag,
   Search,
   Truck,
@@ -21,20 +20,10 @@ import yarnHart from '../assets/yarn-heart.png'
 export default function ProductPage() {
   const { slug } = useParams()
   const { addToCart } = useCart()
+  const { products, categories, loading, getMaterialBySlug } = useAppData()
+
+  const [materialDetail, setMaterialDetail] = useState(null)
   const [showMessage, setShowMessage] = useState(false)
-
-  function handleAddToCart() {
-    addToCart(product, quantity)
-
-    setShowMessage(true)
-
-    setTimeout(() => {
-      setShowMessage(false)
-    }, 3000)
-  }
-
-  const { products, categories, loading } = useAppData()
-
   const [selectedImage, setSelectedImage] = useState(null)
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState('opis')
@@ -42,6 +31,20 @@ export default function ProductPage() {
   const product = useMemo(() => {
     return products.find((item) => item.slug === slug) || null
   }, [products, slug])
+
+  useEffect(() => {
+    async function loadMaterial() {
+      if (!product?.material?.slug) {
+        setMaterialDetail(null)
+        return
+      }
+
+      const data = await getMaterialBySlug(product.material.slug)
+      setMaterialDetail(data)
+    }
+
+    loadMaterial()
+  }, [product])
 
   useEffect(() => {
     if (!product) return
@@ -55,6 +58,15 @@ export default function ProductPage() {
     setQuantity(1)
     setActiveTab('opis')
   }, [product])
+
+  function handleAddToCart() {
+    addToCart(product, quantity)
+    setShowMessage(true)
+
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 3000)
+  }
 
   if (loading) {
     return <main className="product-detail-page">Učitavanje proizvoda...</main>
@@ -75,21 +87,22 @@ export default function ProductPage() {
       id: 'opis',
       label: 'Opis',
       content:
-        product?.description ||
+        product.description ||
         'Opis proizvoda trenutno nije dostupan.',
     },
     {
       id: 'info',
       label: 'Dodatne informacije',
       content:
-        product?.additional_info ||
-        'Materijal: moher i prirodna vuna. Svaki proizvod je ručno izrađen, pa su moguća blaga odstupanja.',
+        materialDetail?.short_description ||
+        product.additional_info ||
+        'Svaki proizvod je ručno izrađen, pa su moguća blaga odstupanja.'
     },
     {
       id: 'care',
       label: 'Održavanje',
       content:
-        product?.care_instructions ||
+        materialDetail?.care_instructions ||
         'Preporučuje se ručno pranje u hladnoj vodi i sušenje na ravnoj površini.',
     },
   ]
@@ -100,16 +113,10 @@ export default function ProductPage() {
     <>
       <nav className="breadcrumb">
         <Link to="/">Početna</Link>
-
         <span className="breadcrumb-separator">›</span>
-
         <Link to="/prodavnica">Prodavnica</Link>
-
         <span className="breadcrumb-separator">›</span>
-
-        <span className="current">
-          {product.name}
-        </span>
+        <span className="current">{product.name}</span>
       </nav>
 
       <main className="product-detail-page">
@@ -139,7 +146,7 @@ export default function ProductPage() {
                 />
               )}
 
-              <button className="zoom-btn" type="button" aria-label="Uvećaj sliku">
+              <button className="zoom-btn" type="button">
                 <Search size={18} />
               </button>
             </div>
@@ -168,7 +175,14 @@ export default function ProductPage() {
                   <Leaf size={19} />
                   <span>Materijal:</span>
                 </div>
-                <strong>{product.material || '—'}</strong>
+
+                {product.material ? (
+                  <Link to={`/materijali/${product.material.slug}`}>
+                    <strong>{product.material.name}</strong>
+                  </Link>
+                ) : (
+                  <strong>—</strong>
+                )}
               </div>
 
               <div className="product-spec">
@@ -193,7 +207,9 @@ export default function ProductPage() {
                   <span>Dostupnost:</span>
                 </div>
                 <strong>
-                  {product.stock_quantity > 0 ? 'Na stanju' : 'Trenutno nije dostupno'}
+                  {product.stock_quantity > 0
+                    ? 'Na stanju'
+                    : 'Trenutno nije dostupno'}
                 </strong>
               </div>
 
@@ -302,6 +318,7 @@ export default function ProductPage() {
             </div>
           </div>
         </section>
+
         {showMessage && (
           <div className="cart-message">
             Proizvod je dodat u korpu

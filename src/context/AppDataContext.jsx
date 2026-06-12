@@ -6,13 +6,22 @@ const AppDataContext = createContext(null)
 export function AppDataProvider({ children }) {
 	const [products, setProducts] = useState([])
 	const [categories, setCategories] = useState([])
+	const [materials, setMaterials] = useState([])
 
 	const [blogCategories, setBlogCategories] = useState([])
 	const [latestPosts, setLatestPosts] = useState([])
-
 	const [blogPosts, setBlogPosts] = useState([])
 
 	const [loading, setLoading] = useState(true)
+
+	async function getMaterialBySlug(slug) {
+		try {
+			return await api.getMaterial(slug)
+		} catch (error) {
+			console.error(error)
+			return null
+		}
+	}
 
 	useEffect(() => {
 		async function loadData() {
@@ -22,23 +31,25 @@ export function AppDataProvider({ children }) {
 				const [
 					productsData,
 					categoriesData,
+					materialsData,
 					blogCategoriesData,
-					blogPostsData,
-					latestPostsData
+					latestPostsData,
+					blogPostsData
 				] = await Promise.all([
 					api.getProducts(),
 					api.getCategories(),
+					api.getMaterials(),
 					api.getBlogCategories(),
 					api.getLatestBlogPosts(),
-					api.getBlogPosts(),
+					api.getBlogPosts()
 				])
 
 				setProducts(productsData)
 				setCategories(categoriesData)
-
+				setMaterials(materialsData)
 				setBlogCategories(blogCategoriesData)
-				setBlogPosts(blogPostsData)
 				setLatestPosts(latestPostsData)
+				setBlogPosts(blogPostsData)
 			} catch (error) {
 				console.error(error)
 			} finally {
@@ -55,9 +66,11 @@ export function AppDataProvider({ children }) {
 				loading,
 				products,
 				categories,
+				materials,
 				blogPosts,
 				blogCategories,
-				latestPosts
+				latestPosts,
+				getMaterialBySlug
 			}}
 		>
 			{children}

@@ -23,6 +23,7 @@ export default function Header() {
           <NavLink to="/" onClick={closeMenu}>Početna</NavLink>
           <NavLink to="/prodavnica" onClick={closeMenu} className="menu-with-icon">Proizvodi</NavLink>
           <NavLink to="/blog" onClick={closeMenu}>Blog</NavLink>
+          <NavLink to="/materijali" onClick={closeMenu}>Materijali</NavLink>
           <NavLink to="/o-nama" onClick={closeMenu}>O nama</NavLink>
           <NavLink to="/kontakt" onClick={closeMenu}>Kontakt</NavLink>
         </nav>

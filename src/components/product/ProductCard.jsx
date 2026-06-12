@@ -38,7 +38,7 @@ export default function ProductCard({ product }) {
           <h3>{product.name}</h3>
         </Link>
 
-        <p>{product.material}</p>
+        <p>{product.material.name}</p>
 
         <div className="product-bottom">
           <strong>
