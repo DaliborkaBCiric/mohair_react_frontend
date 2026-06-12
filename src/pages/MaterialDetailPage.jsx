@@ -122,7 +122,7 @@ export default function MaterialDetailPage() {
           rgba(255, 250, 247, 0.7) 0%,
           rgba(255, 250, 247, 0) 35%
         ),
-        url(${material.featured_image})
+        url(${material.material_products_image})
       `
 					}}
 				/>

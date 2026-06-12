@@ -132,7 +132,7 @@ export default function HomePage() {
             categories.map((category) => (
               <Link
                 className="category-card"
-                to={`/prodavnica`}
+                to={`/prodavnica?category=${category.slug}`}
                 key={category.id}
               >
                 <img src={`/src/assets/${category.image}`} alt={category.name} />

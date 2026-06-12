@@ -6,8 +6,6 @@ import CollaborationBanner from '../components/banners/CollaborationBanner'
 
 export default function Blog() {
   const { blogPosts, blogCategories, loading } = useAppData()
-
-  console.log(blogCategories, "blogCategories")
   const [category, setCategory] = useState(0)
 
   const filtered = useMemo(() => {
