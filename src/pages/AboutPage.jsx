@@ -2,7 +2,6 @@ import "../styles/about.css";
 import hands from "../assets/hands.png";
 import GiftIcon from "../assets/icon_gift.png";
 import Leaf from "../assets/svg_icons/leaf.svg";
-import aboutImage from "../../images/about-handmade.png";
 import logo from '../assets/logo-main.png'
 import shieldIcon from "../assets/svg_icons/shield-check.svg"
 import idea from "../assets/svg_icons/idea.svg"
@@ -49,7 +48,7 @@ export default function About() {
         </div>
 
         <div className="about-photo">
-          <img src={aboutImage} alt="Ručni rad sa ljubavlju" />
+          <img src="/images/about-handmade.png" alt="Ručni rad sa ljubavlju" />
         </div>
       </div>
 
