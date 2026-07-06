@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import ComingSoonPage from './pages/ComingSoonPage'
 import MainLayout from './components/layout/MainLayout.jsx'
 import HomePage from './pages/HomePage.jsx'
 import ShopPage from './pages/ShopPage.jsx'
@@ -16,6 +17,12 @@ import MaterialsPage from './pages/MaterialsPage.jsx'
 import MaterialDetailPage from './pages/MaterialDetailPage.jsx'
 
 export default function App() {
+  const COMING_SOON = true
+
+  if (COMING_SOON) {
+    return <ComingSoonPage />
+  }
+
   return (
     <MainLayout>
       <Routes>
