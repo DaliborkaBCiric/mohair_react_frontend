@@ -361,14 +361,10 @@
 /* Responsive */
 @media (max-width: 1050px) {
 
-	.top-filter {
-		display: flex;
-		justify-content: space-between;
-	}
-
 	.btn-soft {
 		display: inline-flex !important;
 		height: 45px !important;
+		margin-bottom: 20px;
 	}
 
 	.shop-sidebar {
