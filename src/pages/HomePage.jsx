@@ -135,7 +135,7 @@ export default function HomePage() {
                 to={`/prodavnica?category=${category.slug}`}
                 key={category.id}
               >
-                <img src={`/src/assets/${category.image}`} alt={category.name} />
+                <img src={`${category.image}`} alt={category.name} />
 
                 <h3>{category.name}</h3>
 
