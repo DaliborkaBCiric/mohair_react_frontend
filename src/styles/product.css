@@ -81,7 +81,7 @@
 
 .product-info {
 	position: relative;
-	padding-top: 6px;
+	padding-top: 16px;
 }
 
 .info-strip {
@@ -434,6 +434,7 @@
 @media (max-width: 850px) {
 	.product-info-panel {
 		padding: 18px;
+		width: auto;
 	}
 
 	.product-tabs {

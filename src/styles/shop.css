@@ -368,6 +368,7 @@
 
 	.btn-soft {
 		display: inline-flex !important;
+		height: 45px !important;
 	}
 
 	.shop-sidebar {
@@ -478,5 +479,6 @@
 
 	.product-grid {
 		grid-template-columns: 1fr;
+		margin-left: 0;
 	}
 }
