@@ -40,12 +40,30 @@ export default function Checkout() {
       setSending(true)
 
       await api.sendOrder({
-        customer: form,
-        items,
-        subtotal,
-        delivery,
-        total,
+        customer_first_name: form.firstName,
+        customer_last_name: form.lastName,
+        customer_email: form.email,
+        customer_phone: form.phone,
+        customer_address: form.address,
+        customer_city: form.city,
+        customer_postal_code: form.postalCode,
+        customer_country: 'Serbia',
+
+        customer_note: form.note,
+
         payment_method: 'Pouzećem',
+
+        shipping_method_id: 1, // ili odgovarajući ID iz baze
+
+        shipping_amount: delivery,
+
+        subtotal,
+        total,
+
+        items: items.map((item) => ({
+          product_id: item.id,
+          quantity: item.quantity,
+        })),
       })
 
       clearCart()
