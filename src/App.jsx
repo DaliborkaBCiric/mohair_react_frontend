@@ -17,7 +17,7 @@ import MaterialsPage from './pages/MaterialsPage.jsx'
 import MaterialDetailPage from './pages/MaterialDetailPage.jsx'
 
 export default function App() {
-  const COMING_SOON = true
+  const COMING_SOON = false
 
   if (COMING_SOON) {
     return <ComingSoonPage />
